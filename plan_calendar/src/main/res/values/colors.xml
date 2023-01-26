@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue">#0000FF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#ff3300</color>
+    <color name="line_color">#80888888</color>
+    <color name="one_time_event">#FB6704</color>
+    <color name="repeat_event">#1FF607</color>
+    <color name="progress_event">#FBDB08</color>
+    <color name="past_event">#53534F</color>
+    <color name="holiday_event">#DA1D1D</color>
+</resources>

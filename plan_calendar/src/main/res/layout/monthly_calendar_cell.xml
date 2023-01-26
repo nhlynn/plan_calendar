@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cv_monthly_cell"
+    android:layout_width="match_parent"
+    android:layout_height="75dp">
+
+    <View
+        android:id="@+id/view_vertical"
+        android:layout_width="0.5dp"
+        android:layout_height="0dp"
+        android:background="#80888888"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:background="#80888888"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_month_date"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:padding="4dp"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:background="@drawable/circle_drawable"
+        app:layout_constraintBottom_toTopOf="@+id/rv_event"
+        app:layout_constraintEnd_toStartOf="@+id/view_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="01" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_event"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="true"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/view_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_month_date"
+        tools:listitem="@layout/event_item" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.nhlynn.plan_calendar.MonthlyCalendar
+        android:id="@+id/monthly_cal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:header_date_color="@color/blue"
+        app:holiday_event_color="@color/holiday_event"
+        app:line_color="@color/line_color"
+        app:next_icon="@drawable/ic_next"
+        app:oneTime_color="@color/one_time_event"
+        app:past_color="@color/past_event"
+        app:previous_icon="@drawable/ic_previous"
+        app:progress_color="@color/progress_event"
+        app:repeat_color="@color/repeat_event"
+        app:sunday_off="true"
+        app:weekend_off="true"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

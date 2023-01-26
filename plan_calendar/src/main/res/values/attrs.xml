@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LynnCustomizeCalendar">
+        <attr name="header_date_color" format="color"/>
+        <attr name="previous_icon" format="reference" />
+        <attr name="next_icon" format="reference" />
+        <attr name="weekend_off" format="boolean" />
+        <attr name="sunday_off" format="boolean" />
+        <attr name="line_color" format="color" />
+        <attr name="oneTime_color" format="color" />
+        <attr name="repeat_color" format="color" />
+        <attr name="progress_color" format="color" />
+        <attr name="holiday_event_color" format="color" />
+        <attr name="past_color" format="color" />
+    </declare-styleable>
+</resources>
