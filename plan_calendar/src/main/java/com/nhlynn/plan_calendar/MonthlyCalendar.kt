@@ -41,13 +41,13 @@ class MonthlyCalendar constructor(
     }
 
     private var mainCalendar: Calendar = Calendar.getInstance()
-    private var mMonthlyHeaderAdapter: MonthlyHeaderAdapter
+//    private var mMonthlyHeaderAdapter: MonthlyHeaderAdapter
     private var mMonthlyDayAdapter: MonthlyDayAdapter
 
     private var tvDate: MaterialTextView
     private var btnPrevious: AppCompatImageButton
     private var btnNext: AppCompatImageButton
-    private var rvWeek: RecyclerView
+//    private var rvWeek: RecyclerView
     private var rvDate: RecyclerView
 
     private var onMonthChangeListener: OnMonthChangeListener? = null
@@ -117,15 +117,15 @@ class MonthlyCalendar constructor(
         btnPrevious = rootView.findViewById(R.id.btn_previous)
         btnNext = rootView.findViewById(R.id.btn_next)
         rvDate = rootView.findViewById(R.id.rv_date)
-        rvWeek = rootView.findViewById(R.id.rv_week)
+//        rvWeek = rootView.findViewById(R.id.rv_week)
 
         getMonthDay()
         setHeaderDateColor(headerColor)
 
-        mMonthlyHeaderAdapter = MonthlyHeaderAdapter()
-        rvWeek.layoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
-        rvWeek.adapter = mMonthlyHeaderAdapter
-        mMonthlyHeaderAdapter.setData(getWeek())
+//        mMonthlyHeaderAdapter = MonthlyHeaderAdapter()
+//        rvWeek.layoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
+//        rvWeek.adapter = mMonthlyHeaderAdapter
+//        mMonthlyHeaderAdapter.setData(getWeek())
 
         mMonthlyDayAdapter = MonthlyDayAdapter(this, this)
         rvDate.layoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
@@ -288,13 +288,13 @@ class MonthlyCalendar constructor(
 
     fun setWeekendOff(status: Boolean) {
         weekendOff = status
-        mMonthlyHeaderAdapter.setWeekendOff(status)
+//        mMonthlyHeaderAdapter.setWeekendOff(status)
         mMonthlyDayAdapter.setWeekendOff(status)
     }
 
     fun setSundayOff(status: Boolean) {
         sundayOff = status
-        mMonthlyHeaderAdapter.setSundayOff(status)
+//        mMonthlyHeaderAdapter.setSundayOff(status)
         mMonthlyDayAdapter.setSundayOff(status)
     }
 

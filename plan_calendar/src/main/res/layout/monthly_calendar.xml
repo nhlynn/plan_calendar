@@ -45,19 +45,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_week"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_next"
-        tools:itemCount="1"
-        tools:listitem="@layout/calendar_cell" />
-
-    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -67,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_week"
+        app:layout_constraintTop_toBottomOf="@+id/btn_next"
         tools:itemCount="10"
         tools:listitem="@layout/monthly_calendar_cell" />
 </androidx.constraintlayout.widget.ConstraintLayout>
