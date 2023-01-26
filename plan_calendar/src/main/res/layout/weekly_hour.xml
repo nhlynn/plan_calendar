@@ -23,7 +23,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/event"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="55dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/view_horizontal"
         app:layout_constraintEnd_toStartOf="@+id/view_vertical"
