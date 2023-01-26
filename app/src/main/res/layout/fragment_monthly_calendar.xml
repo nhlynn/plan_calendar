@@ -22,7 +22,6 @@
         app:previous_icon="@drawable/ic_previous"
         app:progress_color="@color/progress_event"
         app:repeat_color="@color/repeat_event"
-        app:sunday_off="true"
-        app:weekend_off="true"/>
+        app:sunday_off="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

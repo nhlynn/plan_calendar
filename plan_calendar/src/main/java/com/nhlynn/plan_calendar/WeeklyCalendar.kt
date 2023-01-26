@@ -223,7 +223,7 @@ class WeeklyCalendar constructor(
         val weekStartDate = ymdFormatter.format(mainCalendar.time)
 
         while (dateList.size < 16) {
-            dateList.add(dateFormat.format(mainCalendar.time))
+            dateList.add(ymdFormatter.format(mainCalendar.time))
             mainCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
         mainCalendar.add(Calendar.DAY_OF_MONTH, -1)

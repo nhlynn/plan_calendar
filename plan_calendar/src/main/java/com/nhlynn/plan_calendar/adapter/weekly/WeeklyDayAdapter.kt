@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nhlynn.plan_calendar.R
 import com.nhlynn.plan_calendar.databinding.CalendarCellBinding
 import com.nhlynn.plan_calendar.utils.dateFormat
+import com.nhlynn.plan_calendar.utils.ymdFormatter
 import java.util.Date
 
 class WeeklyDayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,40 +30,40 @@ class WeeklyDayAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val viewHolder = holder as DayViewHolder
         val root = viewHolder.viewBinder
 
-        root.tvMonthDate.text = dayList[position]
+        val date=dayList[position]
 
-        if (dayList[position] == dateFormat.format(Date())) {
+        root.tvMonthDate.text = try {
+            ymdFormatter.parse(date)?.let { dateFormat.format(it) }
+        }catch (e: Exception){
+            date
+        }
+
+        if (dayList[position] == ymdFormatter.format(Date())) {
             root.tvMonthDate.setBackgroundResource(R.drawable.circle_drawable)
         } else {
             root.tvMonthDate.background=null
         }
 
-        try {
-            if (dayList[position].toInt() > 0) {
-                root.tvMonthDate.setTypeface(root.tvMonthDate.typeface, Typeface.NORMAL)
-            }
-        } catch (e: Exception) {
+        if (position > 8) {
+            root.tvMonthDate.setTypeface(root.tvMonthDate.typeface, Typeface.NORMAL)
+        }else{
             root.tvMonthDate.textSize = 14f
             root.tvMonthDate.setTypeface(root.tvMonthDate.typeface, Typeface.BOLD)
         }
 
-        if (weekendOff && (position == 1 || position == 7 || position == 9 || position == 15)) {
-            root.tvMonthDate.setTextColor(
-                AppCompatResources.getColorStateList(
-                    root.tvMonthDate.context,
-                    R.color.red
-                )
-            )
+        val color=if (weekendOff && (position == 1 || position == 7 || position == 9 || position == 15)) {
+            R.color.red
+        }else if (sundayOff && (position == 1 || position == 9)) {
+            R.color.red
+        }else {
+            R.color.black
         }
-
-        if (sundayOff && (position == 1 || position == 9)) {
-            root.tvMonthDate.setTextColor(
-                AppCompatResources.getColorStateList(
-                    root.tvMonthDate.context,
-                    R.color.red
-                )
+        root.tvMonthDate.setTextColor(
+            AppCompatResources.getColorStateList(
+                root.tvMonthDate.context,
+                color
             )
-        }
+        )
     }
 
     override fun getItemCount(): Int {
