@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_previous"
         android:layout_width="wrap_content"
@@ -13,7 +14,6 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackground"
-        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_previous"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,6 @@
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackground"
-        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
