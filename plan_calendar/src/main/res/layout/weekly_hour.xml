@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="55dp">
 
-    <com.google.android.material.textview.MaterialTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_time"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
         android:minWidth="75dp"
@@ -15,7 +15,6 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view_horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/view_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="10:00" />
@@ -23,11 +22,11 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/event"
         android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/view_horizontal"
         app:layout_constraintEnd_toStartOf="@+id/view_vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_time"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView

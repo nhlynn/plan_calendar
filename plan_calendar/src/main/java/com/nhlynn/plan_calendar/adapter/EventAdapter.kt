@@ -42,7 +42,7 @@ class EventAdapter(private val delegate: OnEventClickListener) :
 
         val color = convertColor(event.date, event.eventType, event.startTime, event.endTime)
         binding.view.setBackgroundColor(ContextCompat.getColor(binding.view.context, color))
-        binding.cvCard.strokeColor = ContextCompat.getColor(binding.cvCard.context, color)
+//        binding.cvCard.strokeColor = ContextCompat.getColor(binding.cvCard.context, color)
 
         binding.cvCard.setOnClickListener {
             delegate.eventClick(event)
