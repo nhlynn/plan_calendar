@@ -12,8 +12,8 @@
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
         android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_previous"
         android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_previous"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,8 +39,8 @@
         android:layout_gravity="center"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_next"
         android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_next"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
