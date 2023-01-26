@@ -59,10 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_next"
-        tools:itemCount="1"
+        tools:itemCount="2"
         tools:listitem="@layout/calendar_cell" />
 
-    <androidx.recyclerview.widget.RecyclerView
+   <!-- <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hour"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -73,6 +73,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_date"
         tools:itemCount="7"
-        tools:listitem="@layout/weekly_hour" />
+        tools:listitem="@layout/weekly_hour" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

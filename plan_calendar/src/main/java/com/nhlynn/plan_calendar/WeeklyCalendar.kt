@@ -50,7 +50,7 @@ class WeeklyCalendar constructor(
     private var btnPrevious: AppCompatImageButton
     private var btnNext: AppCompatImageButton
     private var rvDate: RecyclerView
-    private var rvHour: RecyclerView
+//    private var rvHour: RecyclerView
 
     private var onWeekChangeListener: OnWeekChangeListener? = null
     private var onEventClickListener: OnEventClickListener? = null
@@ -119,7 +119,7 @@ class WeeklyCalendar constructor(
         btnPrevious = rootView.findViewById(R.id.btn_previous)
         btnNext = rootView.findViewById(R.id.btn_next)
         rvDate = rootView.findViewById(R.id.rv_date)
-        rvHour = rootView.findViewById(R.id.rv_hour)
+//        rvHour = rootView.findViewById(R.id.rv_hour)
 
         setHeaderDateColor(headerColor)
 
@@ -131,9 +131,9 @@ class WeeklyCalendar constructor(
 
 
         mWeeklyHourAdapter = WeeklyHourAdapter(this, this)
-        rvHour.layoutManager = GridLayoutManager(context, 8, LinearLayoutManager.VERTICAL, false)
-        rvHour.adapter = mWeeklyHourAdapter
-        mWeeklyHourAdapter.setData(getDayHour())
+//        rvHour.layoutManager = GridLayoutManager(context, 8, LinearLayoutManager.VERTICAL, false)
+//        rvHour.adapter = mWeeklyHourAdapter
+//        mWeeklyHourAdapter.setData(getDayHour())
 
         nextIcon?.let { btnNext.setImageResource(it) }
 
