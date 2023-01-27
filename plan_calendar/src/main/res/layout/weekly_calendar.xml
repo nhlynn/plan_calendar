@@ -28,11 +28,11 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:text="@string/app_name"
         app:layout_constraintBottom_toBottomOf="@+id/btn_next"
         app:layout_constraintEnd_toStartOf="@+id/btn_next"
         app:layout_constraintStart_toEndOf="@+id/btn_previous"
-        app:layout_constraintTop_toTopOf="@+id/btn_previous" />
+        app:layout_constraintTop_toTopOf="@+id/btn_previous"
+        tools:text="@string/app_name" />
 
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -47,20 +47,177 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_date"
-        android:layout_width="match_parent"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_blank"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:minHeight="50dp"
         android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:isScrollContainer="false"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_sun"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_next"
-        tools:itemCount="2"
-        tools:listitem="@layout/calendar_cell" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_sun"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/sun"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_mon"
+        app:layout_constraintStart_toEndOf="@+id/lbl_blank"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_mon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/mon"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_tue"
+        app:layout_constraintStart_toEndOf="@+id/lbl_sun"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_tue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/tue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_wed"
+        app:layout_constraintStart_toEndOf="@+id/lbl_mon"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_wed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/wed"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_thu"
+        app:layout_constraintStart_toEndOf="@+id/lbl_tue"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_thu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/thu"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_fri"
+        app:layout_constraintStart_toEndOf="@+id/lbl_wed"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_fri"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/fri"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_sat"
+        app:layout_constraintStart_toEndOf="@+id/lbl_thu"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lbl_sat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/sat"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lbl_fri"
+        app:layout_constraintTop_toBottomOf="@+id/btn_previous" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_sun"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_sun"
+        app:layout_constraintStart_toStartOf="@+id/lbl_sun"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_sun"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_mon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_mon"
+        app:layout_constraintStart_toStartOf="@+id/lbl_mon"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_mon"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_tue"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_tue"
+        app:layout_constraintStart_toStartOf="@+id/lbl_tue"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_tue"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_wed"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_wed"
+        app:layout_constraintStart_toStartOf="@+id/lbl_wed"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_wed"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_thu"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_thu"
+        app:layout_constraintStart_toStartOf="@+id/lbl_thu"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_thu"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_fri"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/circle_drawable"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_fri"
+        app:layout_constraintStart_toStartOf="@+id/lbl_fri"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_fri"
+        tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_sat"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_sat"
+        app:layout_constraintStart_toStartOf="@+id/lbl_sat"
+        app:layout_constraintTop_toBottomOf="@+id/lbl_sat"
+        tools:text="1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hour"
@@ -71,8 +228,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_date"
-        tools:itemCount="7"
-        tools:listitem="@layout/weekly_hour" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_sun"
+        tools:itemCount="7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

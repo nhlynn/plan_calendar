@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,12 +45,19 @@ class WeeklyCalendar constructor(
     private var mainCalendar: Calendar = Calendar.getInstance()
     private var hourCalendar: Calendar = Calendar.getInstance()
     private var mWeeklyHourAdapter: WeeklyHourAdapter
-    private var mWeeklyDayAdapter: WeeklyDayAdapter
 
     private var tvDate: MaterialTextView
+    private var lblSun: MaterialTextView
+    private var lblSat: MaterialTextView
+    private var tvSun: MaterialTextView
+    private var tvMon: MaterialTextView
+    private var tvTue: MaterialTextView
+    private var tvWed: MaterialTextView
+    private var tvThu: MaterialTextView
+    private var tvFri: MaterialTextView
+    private var tvSat: MaterialTextView
     private var btnPrevious: AppCompatImageButton
     private var btnNext: AppCompatImageButton
-    private var rvDate: RecyclerView
     private var rvHour: RecyclerView
 
     private var onWeekChangeListener: OnWeekChangeListener? = null
@@ -116,18 +124,20 @@ class WeeklyCalendar constructor(
         val rootView: View = inflater.inflate(R.layout.weekly_calendar, this, true)
 
         tvDate = rootView.findViewById(R.id.tv_header_date)
+        lblSun = rootView.findViewById(R.id.lbl_sun)
+        lblSat = rootView.findViewById(R.id.lbl_sat)
+        tvSun = rootView.findViewById(R.id.tv_sun)
+        tvMon = rootView.findViewById(R.id.tv_mon)
+        tvTue = rootView.findViewById(R.id.tv_tue)
+        tvWed = rootView.findViewById(R.id.tv_wed)
+        tvThu = rootView.findViewById(R.id.tv_thu)
+        tvFri = rootView.findViewById(R.id.tv_fri)
+        tvSat = rootView.findViewById(R.id.tv_sat)
         btnPrevious = rootView.findViewById(R.id.btn_previous)
         btnNext = rootView.findViewById(R.id.btn_next)
-        rvDate = rootView.findViewById(R.id.rv_date)
         rvHour = rootView.findViewById(R.id.rv_hour)
 
         setHeaderDateColor(headerColor)
-
-        mWeeklyDayAdapter = WeeklyDayAdapter()
-        val layoutManager = GridLayoutManager(context, 8, LinearLayoutManager.VERTICAL, false)
-        rvDate.layoutManager = layoutManager
-        rvDate.adapter = mWeeklyDayAdapter
-        getWeekDay()
 
 
         mWeeklyHourAdapter = WeeklyHourAdapter(this, this)
@@ -147,7 +157,10 @@ class WeeklyCalendar constructor(
             calculateDay(PREVIOUS)
         }
 
+        getWeekDay()
         setLineColor(lineColor)
+        setSundayOff(sundayOff)
+        setWeekendOff(weekendOff)
     }
 
     private fun calculateDay(sign: String) {
@@ -215,7 +228,7 @@ class WeeklyCalendar constructor(
 
     @SuppressLint("SetTextI18n")
     private fun getWeekDay() {
-        val dateList = arrayListOf("", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "")
+        val dateList = arrayListOf<String>()
         val monthBeginningCell: Int = mainCalendar.get(Calendar.DAY_OF_WEEK) - 1
         mainCalendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell)
 
@@ -231,16 +244,48 @@ class WeeklyCalendar constructor(
         val weekEndDay: String = sdfWeekDay.format(mainCalendar.time)
         val weekEndDate = ymdFormatter.format(mainCalendar.time)
 
-        mWeeklyDayAdapter.setData(dateList)
+        for ((position, date) in dateList.withIndex()) {
+            when (position) {
+                0 -> {
+                    setDate(date, tvSun)
+                }
+                1 -> {
+                    setDate(date, tvMon)
+                }
+                2 -> {
+                    setDate(date, tvTue)
+                }
+                3 -> {
+                    setDate(date, tvWed)
+                }
+                4 -> {
+                    setDate(date, tvThu)
+                }
+                5 -> {
+                    setDate(date, tvFri)
+                }
+                else -> {
+                    setDate(date, tvSat)
+                }
+            }
+        }
 
         tvDate.text = "$weekStartDay-$weekEndDay"
-        mWeeklyDayAdapter.setWeekendOff(weekendOff)
-        mWeeklyDayAdapter.setSundayOff(sundayOff)
 
         if (onWeekChangeListener != null) {
             onWeekChangeListener!!.onDateChange(
                 weekStartDate, weekEndDate
             )
+        }
+    }
+
+    private fun setDate(date: String, tvDate: MaterialTextView) {
+        tvDate.text = ymdFormatter.parse(date)?.let { dateFormat.format(it) }
+
+        if (date == ymdFormatter.format(Date())) {
+            tvDate.setBackgroundResource(R.drawable.circle_drawable)
+        } else {
+            tvDate.background = null
         }
     }
 
@@ -292,12 +337,20 @@ class WeeklyCalendar constructor(
 
     fun setWeekendOff(status: Boolean) {
         weekendOff = status
-        mWeeklyDayAdapter.setWeekendOff(status)
+        if (status) {
+            lblSun.setTextColor(ContextCompat.getColor(lblSun.context, R.color.red))
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context, R.color.red))
+            lblSat.setTextColor(ContextCompat.getColor(lblSat.context, R.color.red))
+            tvSat.setTextColor(ContextCompat.getColor(tvSat.context, R.color.red))
+        }
     }
 
     fun setSundayOff(status: Boolean) {
         sundayOff = status
-        mWeeklyDayAdapter.setSundayOff(status)
+        if (status) {
+            lblSun.setTextColor(ContextCompat.getColor(lblSun.context, R.color.red))
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context, R.color.red))
+        }
     }
 
     fun setLineColor(color: Int) {
