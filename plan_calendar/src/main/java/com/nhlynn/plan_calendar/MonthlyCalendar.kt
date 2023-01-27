@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,13 +42,13 @@ class MonthlyCalendar constructor(
     }
 
     private var mainCalendar: Calendar = Calendar.getInstance()
-//    private var mMonthlyHeaderAdapter: MonthlyHeaderAdapter
     private var mMonthlyDayAdapter: MonthlyDayAdapter
 
     private var tvDate: MaterialTextView
+    private var tvSat: MaterialTextView
+    private var tvSun: MaterialTextView
     private var btnPrevious: AppCompatImageButton
     private var btnNext: AppCompatImageButton
-//    private var rvWeek: RecyclerView
     private var rvDate: RecyclerView
 
     private var onMonthChangeListener: OnMonthChangeListener? = null
@@ -114,18 +115,14 @@ class MonthlyCalendar constructor(
         val rootView: View = inflater.inflate(R.layout.monthly_calendar, this, true)
 
         tvDate = rootView.findViewById(R.id.tv_header_date)
+        tvSat = rootView.findViewById(R.id.lbl_sat)
+        tvSun = rootView.findViewById(R.id.lbl_sun)
         btnPrevious = rootView.findViewById(R.id.btn_previous)
         btnNext = rootView.findViewById(R.id.btn_next)
         rvDate = rootView.findViewById(R.id.rv_date)
-//        rvWeek = rootView.findViewById(R.id.rv_week)
 
         getMonthDay()
         setHeaderDateColor(headerColor)
-
-//        mMonthlyHeaderAdapter = MonthlyHeaderAdapter()
-//        rvWeek.layoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
-//        rvWeek.adapter = mMonthlyHeaderAdapter
-//        mMonthlyHeaderAdapter.setData(getWeek())
 
         mMonthlyDayAdapter = MonthlyDayAdapter(this, this)
         rvDate.layoutManager = GridLayoutManager(context, 7, LinearLayoutManager.VERTICAL, false)
@@ -147,10 +144,6 @@ class MonthlyCalendar constructor(
         setLineColor(lineColor)
         setSundayOff(sundayOff)
         setWeekendOff(weekendOff)
-    }
-
-    private fun getWeek(): ArrayList<String> {
-        return arrayListOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
     }
 
     private fun calculateDay(sign: String) {
@@ -288,13 +281,18 @@ class MonthlyCalendar constructor(
 
     fun setWeekendOff(status: Boolean) {
         weekendOff = status
-//        mMonthlyHeaderAdapter.setWeekendOff(status)
+        if(weekendOff) {
+            tvSat.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
+        }
         mMonthlyDayAdapter.setWeekendOff(status)
     }
 
     fun setSundayOff(status: Boolean) {
         sundayOff = status
-//        mMonthlyHeaderAdapter.setSundayOff(status)
+        if(sundayOff) {
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
+        }
         mMonthlyDayAdapter.setSundayOff(status)
     }
 

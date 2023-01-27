@@ -43,12 +43,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_event"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="true"
         android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@+id/view_horizontal"
         app:layout_constraintEnd_toStartOf="@+id/view_vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_month_date"
-        tools:listitem="@layout/event_item" />
+        tools:itemCount="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

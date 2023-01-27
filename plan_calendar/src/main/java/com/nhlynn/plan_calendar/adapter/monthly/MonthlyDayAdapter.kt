@@ -51,39 +51,38 @@ class MonthlyDayAdapter(
         val date = monthlyDayList[position]
 
         val showDate = if (date.isNotEmpty()) {
-            if (weekendOff &&
-                (ymdFormatter.parse(date)?.let { dayOfWeekFormat.format(it) } == "Saturday" ||
-                        ymdFormatter.parse(date)?.let { dayOfWeekFormat.format(it) } == "Sunday")
-            ) {
-                root.tvMonthDate.setTextColor(
-                    AppCompatResources.getColorStateList(
-                        root.tvMonthDate.context, R.color.red
-                    )
-                )
-            }else if (sundayOff && ymdFormatter.parse(date)
-                    ?.let { dayOfWeekFormat.format(it) } == "Sunday"
-            ) {
-                root.tvMonthDate.setTextColor(
-                    AppCompatResources.getColorStateList(
-                        root.tvMonthDate.context, R.color.red
-                    )
-                )
-            }else{
-                root.tvMonthDate.setTextColor(
-                    AppCompatResources.getColorStateList(
-                        root.tvMonthDate.context, R.color.black
-                    )
-                )
-            }
-
             ymdFormatter.parse(date)?.let { dateFormat.format(it) }
-        } else {
+        } else{
             ""
         }
+
         root.tvMonthDate.text = showDate
 
+        val color=if (date.isNotEmpty()) {
+            if (weekendOff &&
+                (ymdFormatter.parse(date)?.let { dayOfWeekFormat.format(it) } == "Saturday" ||
+                        ymdFormatter.parse(date)
+                            ?.let { dayOfWeekFormat.format(it) } == "Sunday")
+            ) {
+                R.color.red
+            } else if (sundayOff && (ymdFormatter.parse(date)
+                    ?.let { dayOfWeekFormat.format(it) } == "Sunday")
+            ) {
+                R.color.red
+            } else {
+                R.color.black
+            }
+        }else{
+            R.color.black
+        }
+
+        root.tvMonthDate.setTextColor(
+            AppCompatResources.getColorStateList(
+                root.tvMonthDate.context,color
+            )
+        )
         root.cvMonthlyCell.setOnClickListener {
-            if (date.isNotEmpty()) {
+            if (date.isNotEmpty() || position>6) {
                 onDateClickListener.onClick(date)
             }
         }
