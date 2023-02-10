@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 val defaultCalendar: Calendar = Calendar.getInstance()
+var monthMainCalendar: Calendar = Calendar.getInstance()
 var ymdFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+val ymFormatter = SimpleDateFormat("yyyy-MM", Locale.US)
 var myShowFormatter = SimpleDateFormat("MMM yyyy", Locale.US)
 var dateFormat = SimpleDateFormat("dd", Locale.US)
 var dayOfWeekFormat = SimpleDateFormat("EEEE", Locale.US)

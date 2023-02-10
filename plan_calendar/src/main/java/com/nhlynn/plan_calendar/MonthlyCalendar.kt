@@ -41,7 +41,6 @@ class MonthlyCalendar constructor(
         private var PREVIOUS = "MINUS"
     }
 
-    private var mainCalendar: Calendar = Calendar.getInstance()
     private var mMonthlyDayAdapter: MonthlyDayAdapter
 
     private var tvDate: MaterialTextView
@@ -148,15 +147,15 @@ class MonthlyCalendar constructor(
 
     private fun calculateDay(sign: String) {
         if (sign == PREVIOUS) {
-            mainCalendar.set(
+            monthMainCalendar.set(
                 Calendar.MONTH,
-                mainCalendar.get(Calendar.MONTH) - 1
+                monthMainCalendar.get(Calendar.MONTH) - 1
             )
 
         } else {
-            mainCalendar.set(
+            monthMainCalendar.set(
                 Calendar.MONTH,
-                mainCalendar.get(Calendar.MONTH) + 1
+                monthMainCalendar.get(Calendar.MONTH) + 1
             )
         }
 
@@ -165,71 +164,34 @@ class MonthlyCalendar constructor(
     }
 
     private fun getMonthDay() {
-        tvDate.text = myShowFormatter.format(mainCalendar.time)
+        tvDate.text = myShowFormatter.format(monthMainCalendar.time)
 
         if (onMonthChangeListener != null) {
             onMonthChangeListener!!.onMonthChange(
                 ymdFormatter.format(
-                    mainCalendar.time
+                    monthMainCalendar.time
                 )
             )
         }
     }
 
     private fun daysInMonthArray(): ArrayList<String> {
-        val daysInMonthArray: ArrayList<String> = ArrayList()
-        val daysInMonth: Int = getDayInMonth()
-        val dayOfWeek: Int = getDayOfWeek()
+        val dateModelList: ArrayList<String> = ArrayList()
+        // set date start of month
+        val calendar = Calendar.getInstance()
+        calendar.time = monthMainCalendar.time
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
 
-        for (i in 1..42) {
-            if (i <= dayOfWeek || i > daysInMonth + dayOfWeek) {
-                if (dayOfWeek < 7) {
-                    daysInMonthArray.add("")
-                }
-            } else {
-                val calendar = Calendar.getInstance()
-                calendar.set(Calendar.YEAR, mainCalendar.get(Calendar.YEAR))
-                calendar.set(Calendar.MONTH, mainCalendar.get(Calendar.MONTH))
-                calendar.set(Calendar.DAY_OF_MONTH, (i - dayOfWeek))
-                daysInMonthArray.add(ymdFormatter.format(calendar.time))
-            }
-        }
-        if (daysInMonthArray.size == 42) {
-            if (daysInMonthArray[35].isEmpty() &&
-                daysInMonthArray[36].isEmpty() &&
-                daysInMonthArray[37].isEmpty() &&
-                daysInMonthArray[38].isEmpty() &&
-                daysInMonthArray[39].isEmpty() &&
-                daysInMonthArray[40].isEmpty() &&
-                daysInMonthArray[41].isEmpty()
-            ) {
-                for (day in 41 downTo 35) {
-                    daysInMonthArray.removeAt(day)
-                }
-            }
-        }
-        return daysInMonthArray
-    }
+        val monthBeginningCell: Int = calendar.get(Calendar.DAY_OF_WEEK) - 1
+        calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell)
+        dateModelList.clear()
 
-    private fun getDayInMonth(): Int {
-        val year = mainCalendar.get(Calendar.YEAR)
-        val month = mainCalendar.get(Calendar.MONTH) + 1
-        return if (month == 4 || month == 6 || month == 9 || month == 11) {
-            30
-        } else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-            31
-        } else {
-            if (year % 4 == 0) {
-                29
-            } else {
-                28
-            }
+        while (dateModelList.size < 42) {
+            dateModelList.add(ymdFormatter.format(calendar.time))
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
         }
-    }
 
-    private fun getDayOfWeek(): Int {
-        mainCalendar.set(Calendar.DAY_OF_MONTH, 1)
-        return mainCalendar.get(Calendar.DAY_OF_WEEK) - 1
+        return dateModelList
     }
 
     override fun eventClick(event: EventVO) {

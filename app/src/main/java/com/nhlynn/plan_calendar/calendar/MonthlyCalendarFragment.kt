@@ -6,17 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.nhlynn.plan_calendar.DataViewModel
 import com.nhlynn.plan_calendar.R
 import com.nhlynn.plan_calendar.databinding.FragmentMonthlyCalendarBinding
 import com.nhlynn.plan_calendar.delegate.OnDateClickListener
 import com.nhlynn.plan_calendar.delegate.OnEventClickListener
 import com.nhlynn.plan_calendar.delegate.OnMonthChangeListener
 import com.nhlynn.plan_calendar.model.EventVO
-import com.nhlynn.plan_calendar.utils.PlanCalendar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MonthlyCalendarFragment: Fragment() {
     private var _binding: FragmentMonthlyCalendarBinding?=null
     private val binding get() = _binding!!
+
+    private val ymdFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+    private val monthFormatter = SimpleDateFormat("MM", Locale.US)
+
+    private lateinit var mDataViewModel: DataViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,17 +36,8 @@ class MonthlyCalendarFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mDataViewModel= ViewModelProvider(this)[DataViewModel::class.java]
 
-        val planList= arrayListOf<EventVO>()
-        planList.add(EventVO(date = "2023-01-22", startTime = "15:00", endTime = "16:00", eventName = "Event 5",eventType = PlanCalendar.HOLIDAY_EVENT))
-        planList.add(EventVO(date = "2023-01-23", startTime = "11:30", endTime = "12:00", eventName = "Event 1",eventType = PlanCalendar.REPEAT_EVENT))
-        planList.add(EventVO(date = "2023-01-24", startTime = "13:00", endTime = "18:00", eventName = "Event 2",eventType = PlanCalendar.ONE_TIME_EVENT))
-        planList.add(EventVO(date = "2023-01-24", startTime = "12:30", endTime = "13:30", eventName = "Event 3",eventType = PlanCalendar.IN_PROGRESS_EVENT))
-        planList.add(EventVO(date = "2023-01-25", startTime = "13:00", endTime = "14:00", eventName = "Event 4",eventType = PlanCalendar.PAST_EVENT))
-        planList.add(EventVO(date = "2023-01-26", startTime = "13:00", endTime = "14:00", eventName = "Event 5",eventType = PlanCalendar.ONE_TIME_EVENT))
-        planList.add(EventVO(date = "2023-01-24", startTime = "10:30", endTime = "11:30", eventName = "Event 3",eventType = PlanCalendar.IN_PROGRESS_EVENT))
-
-        binding.monthlyCal.setEvents(planList)
         binding.monthlyCal.setHeaderDateColor(R.color.blue)
         binding.monthlyCal.setPreviousIcon(R.drawable.ic_previous)
         binding.monthlyCal.setNextIcon(R.drawable.ic_next)
@@ -50,6 +49,8 @@ class MonthlyCalendarFragment: Fragment() {
         binding.monthlyCal.setProcessColor(R.color.white)
         binding.monthlyCal.setHolidayEventColor(R.color.blue)
         binding.monthlyCal.setPastColor(R.color.black)
+
+        mDataViewModel.getMonthlyPlanList(monthFormatter.format(Date()))
 
         binding.monthlyCal.setOnDateClickListener(object : OnDateClickListener {
             override fun onClick(date: String) {
@@ -66,10 +67,14 @@ class MonthlyCalendarFragment: Fragment() {
 
         binding.monthlyCal.setOnMonthChangeListener(object : OnMonthChangeListener {
             override fun onMonthChange(date: String) {
-                Toast.makeText(requireContext(),date, Toast.LENGTH_LONG).show()
+                mDataViewModel.getMonthlyPlanList(monthFormatter.format(ymdFormatter.parse(date)!!))
             }
 
         })
+
+        mDataViewModel.mPlanResponse.observe(viewLifecycleOwner){
+            binding.monthlyCal.setEvents(it)
+        }
     }
 
     override fun onDestroyView() {

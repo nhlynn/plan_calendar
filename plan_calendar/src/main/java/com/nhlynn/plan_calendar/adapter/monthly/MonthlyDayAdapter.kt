@@ -14,9 +14,7 @@ import com.nhlynn.plan_calendar.databinding.MonthlyCalendarCellBinding
 import com.nhlynn.plan_calendar.delegate.OnDateClickListener
 import com.nhlynn.plan_calendar.delegate.OnEventClickListener
 import com.nhlynn.plan_calendar.model.EventVO
-import com.nhlynn.plan_calendar.utils.dateFormat
-import com.nhlynn.plan_calendar.utils.dayOfWeekFormat
-import com.nhlynn.plan_calendar.utils.ymdFormatter
+import com.nhlynn.plan_calendar.utils.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -50,15 +48,10 @@ class MonthlyDayAdapter(
 
         val date = monthlyDayList[position]
 
-        val showDate = if (date.isNotEmpty()) {
-            ymdFormatter.parse(date)?.let { dateFormat.format(it) }
-        } else{
-            ""
-        }
+        root.tvMonthDate.text = ymdFormatter.parse(date)?.let { dateFormat.format(it) }
 
-        root.tvMonthDate.text = showDate
-
-        val color=if (date.isNotEmpty()) {
+        val color = if (ymdFormatter.parse(date)?.let { ymFormatter.format(it) } ==
+            ymFormatter.format(monthMainCalendar.time)) {
             if (weekendOff &&
                 (ymdFormatter.parse(date)?.let { dayOfWeekFormat.format(it) } == "Saturday" ||
                         ymdFormatter.parse(date)
@@ -72,17 +65,29 @@ class MonthlyDayAdapter(
             } else {
                 R.color.black
             }
-        }else{
-            R.color.black
+        } else {
+            if (weekendOff &&
+                (ymdFormatter.parse(date)?.let { dayOfWeekFormat.format(it) } == "Saturday" ||
+                        ymdFormatter.parse(date)
+                            ?.let { dayOfWeekFormat.format(it) } == "Sunday")
+            ) {
+                R.color.red_disable
+            } else if (sundayOff && (ymdFormatter.parse(date)
+                    ?.let { dayOfWeekFormat.format(it) } == "Sunday")
+            ) {
+                R.color.red_disable
+            } else {
+                R.color.black_disable
+            }
         }
 
         root.tvMonthDate.setTextColor(
             AppCompatResources.getColorStateList(
-                root.tvMonthDate.context,color
+                root.tvMonthDate.context, color
             )
         )
         root.cvMonthlyCell.setOnClickListener {
-            if (date.isNotEmpty() || position>6) {
+            if (date.isNotEmpty() || position > 6) {
                 onDateClickListener.onClick(date)
             }
         }
@@ -101,7 +106,7 @@ class MonthlyDayAdapter(
         if (date == ymdFormatter.format(Date())) {
             root.tvMonthDate.setBackgroundResource(R.drawable.circle_drawable)
         } else {
-            root.tvMonthDate.background=null
+            root.tvMonthDate.background = null
         }
 
         event(date, root.rvEvent)
@@ -148,35 +153,51 @@ class MonthlyDayAdapter(
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setLineColor(color: Int) {
         this.lineColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOneTimeColor(color: Int) {
         this.oneTimeColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setRepeatColor(color: Int) {
         this.repeatColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProcessColor(color: Int) {
         this.processColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHolidayColor(color: Int) {
         this.holidayColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setPastColor(color: Int) {
         this.pastColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setSundayOff(status: Boolean) {
         this.sundayOff = status
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setWeekendOff(status: Boolean) {
         this.weekendOff = status
+        notifyDataSetChanged()
     }
 }

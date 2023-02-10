@@ -45,6 +45,8 @@ class WeeklyCalendar constructor(
     private var mainCalendar: Calendar = Calendar.getInstance()
     private var hourCalendar: Calendar = Calendar.getInstance()
     private var mWeeklyHourAdapter: WeeklyHourAdapter
+    private var weekStartDate:String=""
+    private var weekEndDate:String=""
 
     private var tvDate: MaterialTextView
     private var lblSun: MaterialTextView
@@ -233,7 +235,7 @@ class WeeklyCalendar constructor(
         mainCalendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell)
 
         val weekStartDay: String = sdfWeekDay.format(mainCalendar.time)
-        val weekStartDate = ymdFormatter.format(mainCalendar.time)
+        weekStartDate = ymdFormatter.format(mainCalendar.time)
 
         while (dateList.size < 7) {
             dateList.add(ymdFormatter.format(mainCalendar.time))
@@ -242,7 +244,7 @@ class WeeklyCalendar constructor(
         mainCalendar.add(Calendar.DAY_OF_MONTH, -1)
 
         val weekEndDay: String = sdfWeekDay.format(mainCalendar.time)
-        val weekEndDate = ymdFormatter.format(mainCalendar.time)
+        weekEndDate = ymdFormatter.format(mainCalendar.time)
 
         for ((position, date) in dateList.withIndex()) {
             when (position) {
@@ -333,6 +335,14 @@ class WeeklyCalendar constructor(
 
     fun setNextIcon(icon: Int) {
         btnNext.setImageResource(icon)
+    }
+
+    fun getStartDate():String{
+        return weekStartDate
+    }
+
+    fun getEndDate():String{
+        return weekEndDate
     }
 
     fun setWeekendOff(status: Boolean) {
