@@ -16,7 +16,7 @@ gradle maven sbt leiningen Add it in your root build.gradle at the end of reposi
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.nhlynn:plan_calendar:1.1.1'
+	        implementation 'com.github.nhlynn:plan_calendar:1.1.2'
 	}
 
 Usage
@@ -130,6 +130,10 @@ Usage
         binding.weeklyCal.setProcessColor(R.color.white)
         binding.weeklyCal.setHolidayEventColor(R.color.blue)
         binding.weeklyCal.setPastColor(R.color.black)
+	
+	
+	Log.d("LogData","Start Date = ${binding.weeklyCal.getStartDate()}")
+        Log.d("LogData","End Date = ${binding.weeklyCal.getEndDate()}")
 
         binding.weeklyCal.setOnWeekChangeListener(object : OnWeekChangeListener {
             override fun onDateChange(fromDate: String, toDate: String) {
