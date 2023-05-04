@@ -17,7 +17,6 @@ import com.nhlynn.plan_calendar.delegate.*
 import com.nhlynn.plan_calendar.model.EventVO
 import com.nhlynn.plan_calendar.utils.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MonthlyCalendar constructor(
     context: Context,
@@ -210,6 +209,25 @@ class MonthlyCalendar constructor(
     //User Use Functions
     fun setEvents(eventList: ArrayList<EventVO>) {
         mMonthlyDayAdapter.setEvent(eventList)
+    }
+
+    fun getStartDate():String{
+        val calendar=Calendar.getInstance()
+        calendar.time= monthMainCalendar.time
+        calendar.set(Calendar.DAY_OF_MONTH,1)
+        return ymdFormatter.format(
+            calendar.time
+        )
+    }
+
+    fun getEndDate():String{
+        val monthLastDate: Int = monthMainCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+        val calendar=Calendar.getInstance()
+        calendar.time= monthMainCalendar.time
+        calendar.set(Calendar.DAY_OF_MONTH,monthLastDate)
+        return ymdFormatter.format(
+            calendar.time
+        )
     }
 
     fun setOnEventClickListener(onEventClickListener: OnEventClickListener) {

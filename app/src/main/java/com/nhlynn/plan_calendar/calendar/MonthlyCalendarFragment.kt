@@ -1,6 +1,7 @@
 package com.nhlynn.plan_calendar.calendar
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,13 +45,16 @@ class MonthlyCalendarFragment: Fragment() {
         binding.monthlyCal.setSundayOff(true)
 //        binding.monthlyCal.setWeekendOff(true)
         binding.monthlyCal.setLineColor(R.color.black)
-        binding.monthlyCal.setOneTimeColor(R.color.purple_200)
-        binding.monthlyCal.setRepeatColor(R.color.red)
-        binding.monthlyCal.setProcessColor(R.color.white)
-        binding.monthlyCal.setHolidayEventColor(R.color.blue)
-        binding.monthlyCal.setPastColor(R.color.black)
+//        binding.monthlyCal.setOneTimeColor(R.color.purple_200)
+//        binding.monthlyCal.setRepeatColor(R.color.red)
+//        binding.monthlyCal.setProcessColor(R.color.white)
+//        binding.monthlyCal.setHolidayEventColor(R.color.blue)
+//        binding.monthlyCal.setPastColor(R.color.black)
 
         mDataViewModel.getMonthlyPlanList(monthFormatter.format(Date()))
+
+        Log.d("LogData","Start Date = ${binding.monthlyCal.getStartDate()}")
+        Log.d("LogData","End Date = ${binding.monthlyCal.getEndDate()}")
 
         binding.monthlyCal.setOnDateClickListener(object : OnDateClickListener {
             override fun onClick(date: String) {
@@ -67,6 +71,9 @@ class MonthlyCalendarFragment: Fragment() {
 
         binding.monthlyCal.setOnMonthChangeListener(object : OnMonthChangeListener {
             override fun onMonthChange(date: String) {
+                Log.d("LogData","Start Date1 = ${binding.monthlyCal.getStartDate()}")
+                Log.d("LogData","End Date1 = ${binding.monthlyCal.getEndDate()}")
+
                 mDataViewModel.getMonthlyPlanList(monthFormatter.format(ymdFormatter.parse(date)!!))
             }
 

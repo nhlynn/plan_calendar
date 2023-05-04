@@ -232,6 +232,18 @@ class DailyCalendar constructor(
         mAdapter.setEvent(eventList)
     }
 
+    fun getStartDate():String{
+        return ymdFormatter.format(
+            mainCalendar.time
+        )
+    }
+
+    fun getEndDate():String{
+        return ymdFormatter.format(
+            mainCalendar.time
+        )
+    }
+
     fun clearEvents() {
         mAdapter.clearEvent()
     }
