@@ -166,7 +166,7 @@ class MonthlyCalendar constructor(
         tvDate.text = myShowFormatter.format(monthMainCalendar.time)
         if (onMonthChangeListener != null) {
             onMonthChangeListener!!.onMonthChange(
-                ymFormatter.format(
+                monthFormatter.format(
                     monthMainCalendar.time
                 ),
                 getStartDate(),

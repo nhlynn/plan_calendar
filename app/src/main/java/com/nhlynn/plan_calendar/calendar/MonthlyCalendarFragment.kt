@@ -22,7 +22,6 @@ class MonthlyCalendarFragment: Fragment() {
     private var _binding: FragmentMonthlyCalendarBinding?=null
     private val binding get() = _binding!!
 
-    private val ymdFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
     private val monthFormatter = SimpleDateFormat("MM", Locale.US)
 
     private lateinit var mDataViewModel: DataViewModel
