@@ -109,33 +109,48 @@ class HourAdapter(
     fun setEvent(eventList: ArrayList<EventVO>) {
         this.hourEventList = eventList
         groupEventList = hourEventList.groupBy { it.startTime.split(":")[0] }
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun clearEvent() {
         this.hourEventList.clear()
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setLineColor(color: Int) {
         this.lineColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOneTimeColor(color: Int) {
         this.oneTimeColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setRepeatColor(color: Int) {
         this.repeatColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProcessColor(color: Int) {
         this.processColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHolidayEventColor(color: Int) {
         this.holidayColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setPastColor(color: Int) {
         this.pastColor = color
+        notifyDataSetChanged()
     }
 }

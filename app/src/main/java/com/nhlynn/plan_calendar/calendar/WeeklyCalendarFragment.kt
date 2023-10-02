@@ -52,19 +52,19 @@ class WeeklyCalendarFragment: Fragment() {
 //        binding.weeklyCal.setHolidayEventColor(R.color.blue)
 //        binding.weeklyCal.setPastColor(R.color.black)
 
-        Log.d("LogData","Start Date = ${binding.weeklyCal.getStartDate()}")
-        Log.d("LogData","End Date = ${binding.weeklyCal.getEndDate()}")
+        Log.d("LogData","Weekly Start Date = ${binding.weeklyCal.getStartDate()}")
+        Log.d("LogData","Weekly End Date = ${binding.weeklyCal.getEndDate()}")
         mDataViewModel.getWeeklyPlanList(monthFormatter.format(ymdFormatter.parse(binding.weeklyCal.getStartDate())!!),
             dayFormatter.format(ymdFormatter.parse(binding.weeklyCal.getEndDate())!!),
             dayFormatter.format(ymdFormatter.parse(binding.weeklyCal.getStartDate())!!))
 
         binding.weeklyCal.setOnWeekChangeListener(object : OnWeekChangeListener {
             override fun onDateChange(fromDate: String, toDate: String) {
-                Log.d("LogData","Start Date1 = ${binding.weeklyCal.getStartDate()}")
-                Log.d("LogData","End Date1 = ${binding.weeklyCal.getEndDate()}")
+                Log.d("LogData","Weekly Start Date1 = ${binding.weeklyCal.getStartDate()}")
+                Log.d("LogData","Weekly End Date1 = ${binding.weeklyCal.getEndDate()}")
 
-                Log.d("LogData","Start Date11 = $fromDate")
-                Log.d("LogData","End Date11 = $toDate")
+                Log.d("LogData","Weekly Start Date Listener = $fromDate")
+                Log.d("LogData","Weekly End Date Listener = $toDate")
 
                 mDataViewModel.getWeeklyPlanList(monthFormatter.format(ymdFormatter.parse(fromDate)!!),
                     dayFormatter.format(ymdFormatter.parse(fromDate)!!),

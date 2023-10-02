@@ -164,12 +164,13 @@ class MonthlyCalendar constructor(
 
     private fun getMonthDay() {
         tvDate.text = myShowFormatter.format(monthMainCalendar.time)
-
         if (onMonthChangeListener != null) {
             onMonthChangeListener!!.onMonthChange(
-                ymdFormatter.format(
+                ymFormatter.format(
                     monthMainCalendar.time
-                )
+                ),
+                getStartDate(),
+                getEndDate()
             )
         }
     }
@@ -211,20 +212,20 @@ class MonthlyCalendar constructor(
         mMonthlyDayAdapter.setEvent(eventList)
     }
 
-    fun getStartDate():String{
-        val calendar=Calendar.getInstance()
-        calendar.time= monthMainCalendar.time
-        calendar.set(Calendar.DAY_OF_MONTH,1)
+    fun getStartDate(): String {
+        val calendar = Calendar.getInstance()
+        calendar.time = monthMainCalendar.time
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
         return ymdFormatter.format(
             calendar.time
         )
     }
 
-    fun getEndDate():String{
+    fun getEndDate(): String {
         val monthLastDate: Int = monthMainCalendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-        val calendar=Calendar.getInstance()
-        calendar.time= monthMainCalendar.time
-        calendar.set(Calendar.DAY_OF_MONTH,monthLastDate)
+        val calendar = Calendar.getInstance()
+        calendar.time = monthMainCalendar.time
+        calendar.set(Calendar.DAY_OF_MONTH, monthLastDate)
         return ymdFormatter.format(
             calendar.time
         )
@@ -261,17 +262,17 @@ class MonthlyCalendar constructor(
 
     fun setWeekendOff(status: Boolean) {
         weekendOff = status
-        if(weekendOff) {
-            tvSat.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
-            tvSun.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
+        if (weekendOff) {
+            tvSat.setTextColor(ContextCompat.getColor(tvSun.context, R.color.red))
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context, R.color.red))
         }
         mMonthlyDayAdapter.setWeekendOff(status)
     }
 
     fun setSundayOff(status: Boolean) {
         sundayOff = status
-        if(sundayOff) {
-            tvSun.setTextColor(ContextCompat.getColor(tvSun.context,R.color.red))
+        if (sundayOff) {
+            tvSun.setTextColor(ContextCompat.getColor(tvSun.context, R.color.red))
         }
         mMonthlyDayAdapter.setSundayOff(status)
     }

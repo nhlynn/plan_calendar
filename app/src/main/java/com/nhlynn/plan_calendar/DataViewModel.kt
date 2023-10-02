@@ -19,58 +19,52 @@ class DataViewModel : ViewModel() {
     }
 
     fun getMonthlyPlanList(month: String) {
-        val time1=getRandomTime()
-        val time2=getRandomTime()
-        val time3=getRandomTime()
-        val time4=getRandomTime()
-        val time5=getRandomTime()
-        val time6=getRandomTime()
         val monthlyPlanList = arrayListOf(
             EventVO(
                 eventId = 1,
                 date = "2023-$month-02",
-                startTime = time1.split(",")[0],
-                endTime = time1.split(",")[1],
+                startTime = "01:00",
+                endTime = "01:30",
                 eventName = "Event 1",
                 eventType = PlanCalendar.HOLIDAY_EVENT
             ),
             EventVO(
                 eventId = 2,
                 date = "2023-$month-10",
-                startTime = time2.split(",")[0],
-                endTime = time2.split(",")[1],
+                startTime = "03:30",
+                endTime = "04:30",
                 eventName = "Event 2",
                 eventType = PlanCalendar.ONE_TIME_EVENT
             ),
             EventVO(
                 eventId = 3,
                 date = "2023-$month-20",
-                startTime = time3.split(",")[0],
-                endTime = time3.split(",")[1],
+                startTime = "11:00",
+                endTime = "12:30",
                 eventName = "Event 3",
                 eventType = PlanCalendar.IN_PROGRESS_EVENT
             ),
             EventVO(
                 eventId = 4,
                 date = "2023-$month-22",
-                startTime = time4.split(",")[0],
-                endTime = time4.split(",")[1],
+                startTime = "14:00",
+                endTime = "15:00",
                 eventName = "Event 4",
                 eventType = PlanCalendar.PAST_EVENT
             ),
             EventVO(
                 eventId = 5,
                 date = "2023-$month-22",
-                startTime = time5.split(",")[0],
-                endTime = time5.split(",")[1],
+                startTime = "15:00",
+                endTime = "15:30",
                 eventName = "Event 5",
                 eventType = PlanCalendar.ONE_TIME_EVENT
             ),
             EventVO(
                 eventId = 6,
                 date = "2023-$month-27",
-                startTime = time6.split(",")[0],
-                endTime = time6.split(",")[1],
+                startTime = "16:00",
+                endTime = "17:30",
                 eventName = "Event 6",
                 eventType = PlanCalendar.HOLIDAY_EVENT
             )
@@ -79,58 +73,52 @@ class DataViewModel : ViewModel() {
     }
 
     fun getDailyPlanList(month: String, day: String) {
-        val time1=getRandomTime()
-        val time2=getRandomTime()
-        val time3=getRandomTime()
-        val time4=getRandomTime()
-        val time5=getRandomTime()
-        val time6=getRandomTime()
         val monthlyPlanList = arrayListOf(
             EventVO(
                 eventId = 1,
                 date = "2023-$month-$day",
-                startTime = time1.split(",")[0],
-                endTime = time1.split(",")[1],
+                startTime = "01:00",
+                endTime = "01:30",
                 eventName = "Event 1",
                 eventType = PlanCalendar.HOLIDAY_EVENT
             ),
             EventVO(
                 eventId = 2,
                 date = "2023-$month-$day",
-                startTime = time2.split(",")[0],
-                endTime = time2.split(",")[1],
+                startTime = "03:30",
+                endTime = "04:30",
                 eventName = "Event 2",
                 eventType = PlanCalendar.ONE_TIME_EVENT
             ),
             EventVO(
                 eventId = 3,
                 date = "2023-$month-$day",
-                startTime = time3.split(",")[0],
-                endTime = time3.split(",")[1],
+                startTime = "11:00",
+                endTime = "12:30",
                 eventName = "Event 3",
                 eventType = PlanCalendar.IN_PROGRESS_EVENT
             ),
             EventVO(
                 eventId = 4,
                 date = "2023-$month-$day",
-                startTime = time4.split(",")[0],
-                endTime = time4.split(",")[1],
+                startTime = "14:00",
+                endTime = "15:00",
                 eventName = "Event 4",
                 eventType = PlanCalendar.PAST_EVENT
             ),
             EventVO(
                 eventId = 5,
                 date = "2023-$month-$day",
-                startTime = time5.split(",")[0],
-                endTime = time5.split(",")[1],
+                startTime = "15:00",
+                endTime = "15:30",
                 eventName = "Event 5",
                 eventType = PlanCalendar.ONE_TIME_EVENT
             ),
             EventVO(
                 eventId = 6,
                 date = "2023-$month-$day",
-                startTime = time6.split(",")[0],
-                endTime = time6.split(",")[1],
+                startTime = "16:00",
+                endTime = "17:30",
                 eventName = "Event 6",
                 eventType = PlanCalendar.HOLIDAY_EVENT
             )

@@ -53,13 +53,11 @@ class DailyCalendarFragment : Fragment() {
 
         mDataViewModel.getDailyPlanList(monthFormatter.format(Date()),dayFormatter.format(Date()))
 
-        Log.d("LogData","Start Date = ${binding.dailyCal.getStartDate()}")
-        Log.d("LogData","End Date = ${binding.dailyCal.getEndDate()}")
+        Log.d("LogData","Current Date = ${binding.dailyCal.getCurrentDate()}")
 
         binding.dailyCal.setOnDateChangeListener(object : OnDateChangeListener {
             override fun onDateChange(date: String) {
-                Log.d("LogData","Start Date1 = ${binding.dailyCal.getStartDate()}")
-                Log.d("LogData","End Date1 = ${binding.dailyCal.getEndDate()}")
+                Log.d("LogData","Current Date = ${binding.dailyCal.getCurrentDate()}")
                 mDataViewModel.getDailyPlanList(monthFormatter.format(ymdFormatter.parse(date)!!),
                     dayFormatter.format(ymdFormatter.parse(date)!!))
             }

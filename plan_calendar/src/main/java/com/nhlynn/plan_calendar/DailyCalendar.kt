@@ -191,8 +191,8 @@ class DailyCalendar constructor(
             }
         }
 
-        mAdapter.setData(hourList)
         mAdapter.clearEvent()
+        mAdapter.setData(hourList)
 
         if (onDateChangeListener != null) {
             onDateChangeListener!!.onDateChange(
@@ -232,13 +232,7 @@ class DailyCalendar constructor(
         mAdapter.setEvent(eventList)
     }
 
-    fun getStartDate():String{
-        return ymdFormatter.format(
-            mainCalendar.time
-        )
-    }
-
-    fun getEndDate():String{
+    fun getCurrentDate():String{
         return ymdFormatter.format(
             mainCalendar.time
         )

@@ -1,7 +1,6 @@
 package com.nhlynn.plan_calendar.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -63,7 +62,6 @@ class EventAdapter(private val delegate: OnEventClickListener) :
                     hmFormat.format(defaultCalendar.time)
                 ) <= timeToInt(endTime)
             ) {
-                Log.d("LogData", "Hello am Here.......")
                 processColor
             } else {
                 when (eventType) {
@@ -116,23 +114,33 @@ class EventAdapter(private val delegate: OnEventClickListener) :
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setOneTimeColor(color: Int) {
         this.oneTimeColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setRepeatColor(color: Int) {
         this.repeatColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setProcessColor(color: Int) {
         this.processColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setHolidayColor(color: Int) {
         this.holidayColor = color
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setPastColor(color: Int) {
         this.pastColor = color
+        notifyDataSetChanged()
     }
 }

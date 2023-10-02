@@ -53,8 +53,8 @@ class MonthlyCalendarFragment: Fragment() {
 
         mDataViewModel.getMonthlyPlanList(monthFormatter.format(Date()))
 
-        Log.d("LogData","Start Date = ${binding.monthlyCal.getStartDate()}")
-        Log.d("LogData","End Date = ${binding.monthlyCal.getEndDate()}")
+        Log.d("LogData","Monthly Start Date = ${binding.monthlyCal.getStartDate()}")
+        Log.d("LogData","Monthly End Date = ${binding.monthlyCal.getEndDate()}")
 
         binding.monthlyCal.setOnDateClickListener(object : OnDateClickListener {
             override fun onClick(date: String) {
@@ -70,11 +70,14 @@ class MonthlyCalendarFragment: Fragment() {
         })
 
         binding.monthlyCal.setOnMonthChangeListener(object : OnMonthChangeListener {
-            override fun onMonthChange(date: String) {
-                Log.d("LogData","Start Date1 = ${binding.monthlyCal.getStartDate()}")
-                Log.d("LogData","End Date1 = ${binding.monthlyCal.getEndDate()}")
+            override fun onMonthChange(currentMonth: String,startDate:String, endDate:String) {
+                Log.d("LogData","Monthly Start Date = ${binding.monthlyCal.getStartDate()}")
+                Log.d("LogData","Monthly End Date = ${binding.monthlyCal.getEndDate()}")
 
-                mDataViewModel.getMonthlyPlanList(monthFormatter.format(ymdFormatter.parse(date)!!))
+                Log.d("LogData","Monthly Date Listener = $currentMonth")
+                Log.d("LogData","Monthly Start Date Listener = $startDate")
+                Log.d("LogData","Monthly End Date Listener = $endDate")
+                mDataViewModel.getMonthlyPlanList(currentMonth)
             }
 
         })
