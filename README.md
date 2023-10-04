@@ -1,4 +1,15 @@
-# Plan Calendar
+<div>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/548b6b24-9a47-405a-86af-ebdd4c7646a5" width=15% height=20%/>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/1483aec1-b96a-46e8-8f4f-7df9536edc2d" width=15% height=20%/>
+</div>
+<div>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/09344a58-a2e9-483d-bd43-5a6e44d08412" width=15% height=20%/>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/1db608ce-b1b2-4b89-808a-73f034191e02" width=15% height=20%/>
+</div>
+<div>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/429c85ee-47e7-42c6-8e2f-267675ded42c" width=15% height=20%/>
+	<img src="https://github.com/nhlynn/plan_calendar/assets/57884748/ed0a7a65-2f8a-49b1-bd83-caef1182e248" width=15% height=20%/>
+</div>
 
 To get a Git project into your build:
 
@@ -16,7 +27,7 @@ gradle maven sbt leiningen Add it in your root build.gradle at the end of reposi
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.nhlynn:plan_calendar:1.1.2'
+	        implementation 'com.github.nhlynn:plan_calendar:1.1.6'
 	}
 
 Usage
@@ -200,6 +211,9 @@ Usage
         binding.monthlyCal.setProcessColor(R.color.white)
         binding.monthlyCal.setHolidayEventColor(R.color.blue)
         binding.monthlyCal.setPastColor(R.color.black)
+	
+ 	Log.d("LogData","Monthly Start Date = ${binding.monthlyCal.getStartDate()}")
+        Log.d("LogData","Monthly End Date = ${binding.monthlyCal.getEndDate()}")
 
         binding.monthlyCal.setOnDateClickListener(object : OnDateClickListener {
             override fun onClick(date: String) {
@@ -215,8 +229,13 @@ Usage
         })
 
         binding.monthlyCal.setOnMonthChangeListener(object : OnMonthChangeListener {
-            override fun onMonthChange(date: String) {
-                Toast.makeText(requireContext(),date, Toast.LENGTH_LONG).show()
+            override fun onMonthChange(currentMonth: String,startDate:String, endDate:String) {
+                Log.d("LogData","Monthly Date Listener = $currentMonth")
+                Log.d("LogData","Monthly Start Date Listener = $startDate")
+                Log.d("LogData","Monthly End Date Listener = $endDate")
+		
+		Log.d("LogData","Monthly Start Date = ${binding.monthlyCal.getStartDate()}")
+                Log.d("LogData","Monthly End Date = ${binding.monthlyCal.getEndDate()}")
             }
 
         })
