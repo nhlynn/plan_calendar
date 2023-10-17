@@ -1,7 +1,7 @@
 package com.nhlynn.plan_calendar.model
 
 data class EventVO(
-    val eventId: Int? = null,
+    val eventId: Any? = null,
     val date: String,
     val startTime: String,
     val endTime: String,
