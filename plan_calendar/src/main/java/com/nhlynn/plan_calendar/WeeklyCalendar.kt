@@ -141,7 +141,6 @@ class WeeklyCalendar constructor(
 
         setHeaderDateColor(headerColor)
 
-
         mWeeklyHourAdapter = WeeklyHourAdapter(this, this)
         rvHour.layoutManager = GridLayoutManager(context, 8, LinearLayoutManager.VERTICAL, false)
         rvHour.adapter = mWeeklyHourAdapter
@@ -188,6 +187,7 @@ class WeeklyCalendar constructor(
             )
         }
 
+        clearEvents()
         getWeekDay()
         mWeeklyHourAdapter.setData(getDayHour())
     }
@@ -318,6 +318,10 @@ class WeeklyCalendar constructor(
     //User Change by Programmatically
     fun setEvents(eventList: ArrayList<EventVO>) {
         mWeeklyHourAdapter.setEvent(eventList)
+    }
+
+    fun clearEvents(){
+        mWeeklyHourAdapter.clearEvent()
     }
 
     fun setHeaderDateColor(color: Int) {

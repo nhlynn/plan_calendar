@@ -154,6 +154,12 @@ class MonthlyDayAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
+    fun clearEvent(){
+        dayGroupEventList = emptyMap()
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     fun setLineColor(color: Int) {
         this.lineColor = color
         notifyDataSetChanged()

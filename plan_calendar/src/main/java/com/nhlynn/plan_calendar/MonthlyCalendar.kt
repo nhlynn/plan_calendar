@@ -158,6 +158,7 @@ class MonthlyCalendar constructor(
             )
         }
 
+        clearEvent()
         getMonthDay()
         mMonthlyDayAdapter.setData(daysInMonthArray())
     }
@@ -210,6 +211,10 @@ class MonthlyCalendar constructor(
     //User Use Functions
     fun setEvents(eventList: ArrayList<EventVO>) {
         mMonthlyDayAdapter.setEvent(eventList)
+    }
+
+    fun clearEvent(){
+        mMonthlyDayAdapter.clearEvent()
     }
 
     fun getStartDate(): String {

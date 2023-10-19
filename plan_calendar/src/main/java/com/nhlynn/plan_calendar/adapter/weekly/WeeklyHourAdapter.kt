@@ -149,4 +149,10 @@ class WeeklyHourAdapter(
         groupEventList = hourEventList.groupBy { it.startTime.split(":")[0] }
         notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearEvent(){
+        groupEventList = emptyMap()
+        notifyDataSetChanged()
+    }
 }
