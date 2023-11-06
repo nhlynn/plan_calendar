@@ -2,6 +2,7 @@ package com.nhlynn.plan_calendar.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,6 @@ import com.nhlynn.plan_calendar.databinding.EventItemBinding
 import com.nhlynn.plan_calendar.delegate.OnEventClickListener
 import com.nhlynn.plan_calendar.model.EventVO
 import com.nhlynn.plan_calendar.utils.*
-import java.util.Date
 
 class EventAdapter(private val delegate: OnEventClickListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -39,7 +39,13 @@ class EventAdapter(private val delegate: OnEventClickListener) :
         binding.tvEventTime.text = "${event.startTime}-${event.endTime}"
         binding.tvEventName.text = event.eventName
 
-        val color = convertColor(event.date, event.eventType, event.startTime, event.endTime)
+        val color = convertColor(event.eventType)
+
+        if (event.eventType==4){
+            binding.tvEventTime.visibility=View.GONE
+        }else{
+            binding.tvEventTime.visibility=View.VISIBLE
+        }
         binding.view.setBackgroundColor(ContextCompat.getColor(binding.view.context, color))
         binding.cvCard.strokeColor = ContextCompat.getColor(binding.cvCard.context, color)
 
@@ -49,53 +55,23 @@ class EventAdapter(private val delegate: OnEventClickListener) :
     }
 
     private fun convertColor(
-        date: String, eventType: Int?, startTime: String, endTime: String
+        eventType: Int?
     ): Int {
-        return if (ymdFormatter.parse(ymdFormatter.format(Date()))
-                ?.after(ymdFormatter.parse(date)) == true
-        ) {
-            pastColor
-        } else if (ymdFormatter.format(Date()) == date) {
-            if (timeToInt(hmFormat.format(defaultCalendar.time)) > timeToInt(endTime)) {
-                pastColor
-            } else if (timeToInt(hmFormat.format(defaultCalendar.time)) >= timeToInt(startTime) && timeToInt(
-                    hmFormat.format(defaultCalendar.time)
-                ) <= timeToInt(endTime)
-            ) {
-                processColor
-            } else {
-                when (eventType) {
-                    1 -> {
-                        oneTimeColor
-                    }
-                    2 -> {
-                        repeatColor
-                    }
-                    3 -> {
-                        processColor
-                    }
-                    4 -> {
-                        holidayColor
-                    }
-                    else -> {
-                        R.color.white
-                    }
-                }
+        return when (eventType) {
+            1 -> {
+                oneTimeColor
             }
-        } else {
-            when (eventType) {
-                1 -> {
-                    oneTimeColor
-                }
-                2 -> {
-                    repeatColor
-                }
-                4 -> {
-                    holidayColor
-                }
-                else -> {
-                    R.color.white
-                }
+            2 -> {
+                repeatColor
+            }
+            3 -> {
+                processColor
+            }
+            4 -> {
+                holidayColor
+            }
+            else -> {
+                R.color.white
             }
         }
     }
