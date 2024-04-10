@@ -27,7 +27,7 @@ gradle maven sbt leiningen Add it in your root build.gradle at the end of reposi
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.nhlynn:plan_calendar:1.1.7'
+	        implementation 'com.github.nhlynn:plan_calendar:1.1.9'
 	}
 
 Usage
